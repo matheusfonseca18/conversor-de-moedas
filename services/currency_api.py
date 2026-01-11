@@ -1,6 +1,14 @@
 import requests
-from config import API_URL, API_KEY
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+
+API_URL = os.getenv("API_URL")
+API_KEY = os.getenv("API_KEY")
+
+if not API_URL or not API_KEY:
+    raise ValueError("Variáveis de ambiente API_URL ou API_KEY não encontradas")
 
 def montar_url(moeda_origem, moeda_destino):
     chave_url = f"{moeda_origem}-{moeda_destino}"
